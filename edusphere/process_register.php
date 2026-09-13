@@ -6,7 +6,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fullname = trim($_POST['fullname'] ?? '');
     $email    = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
-    $role     = trim($_POST['role'] ?? 'learner');
+    $role     = trim($_POST['role'] ?? 'student');
+    if ($role === 'learner') $role = 'student';
+    if ($role === 'tutor') $role = 'teacher';
 
     // Validation
     if (empty($fullname) || empty($email) || empty($password)) {
@@ -27,8 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    if (!in_array($role, ['learner', 'tutor'])) {
-        $role = 'learner';
+    // Strictly permit only 'student' or 'teacher' to be registered
+    if (!in_array($role, ['student', 'teacher'])) {
+        $role = 'student';
     }
 
     try {

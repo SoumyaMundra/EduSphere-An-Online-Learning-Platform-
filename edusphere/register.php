@@ -5,13 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register - EduSphere</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="home.css">
 </head>
 <body>
 
-  <div class="ambient-glow glow-1"></div>
-  <div class="ambient-glow glow-2"></div>
+  <!-- Subtle Ambient Glow Highlights -->
+  <div class="subtle-glow glow-top-center"></div>
+  <div class="subtle-glow glow-accent"></div>
 
+  <!-- Sticky Top Navbar -->
   <header class="navbar-container">
     <div class="navbar">
       <a href="index.php" class="logo">Edu<span>Sphere</span></a>
@@ -20,9 +22,9 @@
       </button>
       <nav>
         <ul class="nav-links" id="navLinks">
-          <li><a href="index.php">Home</a></li>
-          <li><a href="about.php">About Us</a></li>
-          <li><a href="contact.php">Contact Us</a></li>
+          <li><a href="index.php#hero">Home</a></li>
+          <li><a href="index.php#about">About Us</a></li>
+          <li><a href="index.php#contact">Contact Us</a></li>
           <li><a href="login.php" class="btn btn-login">Login</a></li>
           <li><a href="register.php" class="btn btn-register active">Register</a></li>
         </ul>
@@ -30,7 +32,8 @@
     </div>
   </header>
 
-  <div class="auth-wrapper">
+  <!-- Centered Register Workspace -->
+  <main class="auth-wrapper">
     <div class="auth-card">
       <div class="auth-header">
         <h2>Join EduSphere</h2>
@@ -46,19 +49,21 @@
 
       <form action="process_register.php" method="POST">
         <label style="display:block; font-size:0.85rem; font-weight:600; margin-bottom:0.6rem; color:var(--text-muted);">Select Account Type:</label>
+
+        <!-- Role Select Options -->
         <div class="role-selection">
           <label class="role-card selected" id="learnerCard">
-            <input type="radio" name="role" value="learner" checked onchange="updateRoleUI()">
+            <input type="radio" name="role" value="student" checked onchange="updateRoleUI()">
             <span class="role-icon">🎓</span>
-            <span class="role-title">Learner</span>
-            <span class="role-desc">Access & study courses</span>
+            <span class="role-title">Student</span>
+            <span class="role-desc">Access & study lectures</span>
           </label>
 
           <label class="role-card" id="tutorCard">
-            <input type="radio" name="role" value="tutor" onchange="updateRoleUI()">
+            <input type="radio" name="role" value="teacher" onchange="updateRoleUI()">
             <span class="role-icon">👨‍🏫</span>
-            <span class="role-title">Become a Tutor</span>
-            <span class="role-desc">Upload & teach courses</span>
+            <span class="role-title">Teacher</span>
+            <span class="role-desc">Manage course content</span>
           </label>
         </div>
 
@@ -89,14 +94,14 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Create Account</button>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">Create Account</button>
       </form>
 
       <div class="auth-footer">
         Already have an account? <a href="login.php">Sign In</a>
       </div>
     </div>
-  </div>
+  </main>
 
   <script>
     const menuToggle = document.getElementById('menuToggle');
@@ -104,17 +109,12 @@
     menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
 
     function updateRoleUI() {
-      const isLearner = document.querySelector('input[name="role"][value="learner"]').checked;
+      const selectedRole = document.querySelector('input[name="role"]:checked').value;
       const learnerCard = document.getElementById('learnerCard');
       const tutorCard = document.getElementById('tutorCard');
 
-      if (isLearner) {
-        learnerCard.classList.add('selected');
-        tutorCard.classList.remove('selected');
-      } else {
-        tutorCard.classList.add('selected');
-        learnerCard.classList.remove('selected');
-      }
+      learnerCard.classList.toggle('selected', selectedRole === 'student');
+      tutorCard.classList.toggle('selected', selectedRole === 'teacher');
     }
 
     function togglePassword(inputId, btn) {
