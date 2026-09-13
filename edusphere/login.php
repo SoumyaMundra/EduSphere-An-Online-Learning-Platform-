@@ -5,13 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - EduSphere</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="home.css">
 </head>
 <body>
 
-  <div class="ambient-glow glow-1"></div>
-  <div class="ambient-glow glow-2"></div>
+  <!-- Subtle Ambient Glow Highlights -->
+  <div class="subtle-glow glow-top-center"></div>
+  <div class="subtle-glow glow-accent"></div>
 
+  <!-- Sticky Top Navbar -->
   <header class="navbar-container">
     <div class="navbar">
       <a href="index.php" class="logo">Edu<span>Sphere</span></a>
@@ -20,9 +22,9 @@
       </button>
       <nav>
         <ul class="nav-links" id="navLinks">
-          <li><a href="index.php">Home</a></li>
-          <li><a href="about.php">About Us</a></li>
-          <li><a href="contact.php">Contact Us</a></li>
+          <li><a href="index.php#hero">Home</a></li>
+          <li><a href="index.php#about">About Us</a></li>
+          <li><a href="index.php#contact">Contact Us</a></li>
           <li><a href="login.php" class="btn btn-login active">Login</a></li>
           <li><a href="register.php" class="btn btn-register">Register</a></li>
         </ul>
@@ -30,7 +32,8 @@
     </div>
   </header>
 
-  <div class="auth-wrapper">
+  <!-- Centered Login Workspace -->
+  <main class="auth-wrapper">
     <div class="auth-card">
       <div class="auth-header">
         <h2>Welcome Back</h2>
@@ -71,14 +74,14 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Sign In</button>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">Sign In</button>
       </form>
 
       <div class="auth-footer">
         New to EduSphere? <a href="register.php">Create an account</a>
       </div>
     </div>
-  </div>
+  </main>
 
   <script>
     const menuToggle = document.getElementById('menuToggle');
